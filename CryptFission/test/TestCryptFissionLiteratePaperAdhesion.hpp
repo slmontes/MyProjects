@@ -59,6 +59,8 @@
 #include <boost/lexical_cast.hpp>
 #include "CellAgesWriter.hpp"
 
+//Additions for update Chaste_2017.1
+#include "WildTypeCellMutationState.hpp"
 
 /*
  * Define the Chaste simulation as a test class. This is how all simulations
