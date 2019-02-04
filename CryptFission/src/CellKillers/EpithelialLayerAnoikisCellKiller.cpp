@@ -14,6 +14,7 @@
 #include "MeshBasedCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PanethCellMutationState.hpp"
+#include "DifferentiatedCellProliferativeType.hpp"
 
 EpithelialLayerAnoikisCellKiller::EpithelialLayerAnoikisCellKiller(AbstractCellPopulation<2>* pCellPopulation)
     : AbstractCellKiller<2>(pCellPopulation),

@@ -1,8 +1,6 @@
 #ifndef EPITHELIALLAYERANOIKISCELLKILLER_HPP_
 #define EPITHELIALLAYERANOIKISCELLKILLER_HPP_
-#include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
-#include "AbstractCellBasedTestSuite.hpp"
 
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>

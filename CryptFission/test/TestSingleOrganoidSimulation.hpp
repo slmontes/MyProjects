@@ -58,6 +58,8 @@
 #include <boost/lexical_cast.hpp>
 #include "CellAgesWriter.hpp"
 
+#include "WildTypeCellMutationState.hpp"
+
 /*
  * Define the Chaste simulation as a test class. This is how all simulations
  * in Chaste are defined.
@@ -73,8 +75,7 @@ public:
 		double dt = 0.005; //Set dt
 		double end_time = 250.0; //Set end time
 		double sampling_timestep = 0.5/dt; //Set sampling timestep
-        unsigned start_sim = 1;
-        unsigned num_sims = 50;
+
 
         // THIS IS A HACK WHICH HIJACKS PETSC TO GET ARGUMENTS INTO A TEST!
 		CommandLineArguments* p_args = CommandLineArguments::Instance();
@@ -233,7 +234,7 @@ public:
 				if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
 				{
 					Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-					unsigned node_index = p_node->GetIndex();
+
 
 					//Iterate over all possible neighbours of the node
 					for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
@@ -282,7 +283,7 @@ public:
 				if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
 				{
 					Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-					unsigned node_index = p_node->GetIndex();
+
 
 					//Only iterate over the initial layer of transit cells
 					if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)

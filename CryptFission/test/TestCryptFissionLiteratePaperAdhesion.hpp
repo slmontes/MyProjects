@@ -270,7 +270,6 @@ public:
 				if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
 				{
 					Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-					unsigned node_index = p_node->GetIndex();
 
 					//Iterate over all possible neighbours of the node
 					for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
@@ -319,7 +318,6 @@ public:
 				if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
 				{
 					Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-					unsigned node_index = p_node->GetIndex();
 
 					//Only iterate over the initial layer of transit cells
 					if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)

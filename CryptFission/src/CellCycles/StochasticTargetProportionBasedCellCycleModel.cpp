@@ -42,7 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 
 StochasticTargetProportionBasedCellCycleModel::StochasticTargetProportionBasedCellCycleModel()
-    : AbstractSimpleCellCycleModel(),
+    : AbstractSimplePhaseBasedCellCycleModel(),
       mTargetProportion(DOUBLE_UNSET),
 	  mCC_Scale(DOUBLE_UNSET)
 {
@@ -160,7 +160,7 @@ void StochasticTargetProportionBasedCellCycleModel::InitialiseDaughterCell()
 		mpCell->SetMutationState(p_paneth_state);
 	}
 
-	AbstractSimpleCellCycleModel::InitialiseDaughterCell();
+	AbstractSimplePhaseBasedCellCycleModel::InitialiseDaughterCell();
 }
 
 void StochasticTargetProportionBasedCellCycleModel::SetCellCycleLengthScale(double cc_scale){
@@ -182,7 +182,7 @@ void StochasticTargetProportionBasedCellCycleModel::OutputCellCycleModelParamete
     *rParamsFile << "\t\t\t<TargetProportion>" << mTargetProportion << "</TargetProportion>\n";
 
     // Nothing to output, so just call method on direct parent class
-    AbstractSimpleCellCycleModel::OutputCellCycleModelParameters(rParamsFile);
+    AbstractSimplePhaseBasedCellCycleModel::OutputCellCycleModelParameters(rParamsFile);
 }
 
 // Serialization for Boost >= 1.36

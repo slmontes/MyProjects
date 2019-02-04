@@ -2,7 +2,7 @@
 #include "EpithelialLayerDataTrackingModifier.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-
+#include "DifferentiatedCellProliferativeType.hpp"
 
 
 template<unsigned DIM>

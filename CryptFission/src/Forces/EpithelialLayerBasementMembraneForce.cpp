@@ -1,6 +1,7 @@
 #include "EpithelialLayerBasementMembraneForce.hpp"
 #include "AbstractCellProperty.hpp"
 #include "Debug.hpp"
+#include "DifferentiatedCellProliferativeType.hpp"
 
 /*
  * Created on: 21/12/2014

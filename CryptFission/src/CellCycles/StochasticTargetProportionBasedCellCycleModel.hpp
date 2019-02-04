@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ClassIsAbstract.hpp"
 #include <boost/serialization/base_object.hpp>
 
-#include "AbstractSimpleCellCycleModel.hpp"
+#include "AbstractSimplePhaseBasedCellCycleModel.hpp"
 #include "RandomNumberGenerator.hpp"
 
 /**
@@ -52,7 +52,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * N.B. Whether or not the cell should actually divide may depend on
  * Wnt / Oxygen etc. in subclasses.
  */
-class StochasticTargetProportionBasedCellCycleModel : public AbstractSimpleCellCycleModel
+class StochasticTargetProportionBasedCellCycleModel : public AbstractSimplePhaseBasedCellCycleModel
 {
     friend class TestSimpleCellCycleModels;
 
@@ -69,7 +69,7 @@ private:
     template<class Archive>
     void serialize(Archive & archive, const unsigned int version)
     {
-        archive & boost::serialization::base_object<AbstractSimpleCellCycleModel>(*this);
+        archive & boost::serialization::base_object<AbstractSimplePhaseBasedCellCycleModel>(*this);
 
         // Make sure the RandomNumberGenerator singleton gets saved too
         SerializableSingleton<RandomNumberGenerator>* p_wrapper = RandomNumberGenerator::Instance()->GetSerializationWrapper();
@@ -88,9 +88,25 @@ private:
 public:
 
     /**
-     * Default constructor - creates an AbstractSimpleCellCycleModel.
+     * Default constructor - creates an AbstractSimplePhaseBasedCellCycleModel.
      */
     StochasticTargetProportionBasedCellCycleModel();
+
+    virtual double GetAverageTransitCellCycleTime()
+    {
+        return 1.0;
+    }
+
+    virtual double GetAverageStemCellCycleTime()
+    {
+        return 1.0;
+    }
+
+    virtual void SetCellCycleDuration()
+    {
+
+    }
+
 
     /**
      * Destructor.

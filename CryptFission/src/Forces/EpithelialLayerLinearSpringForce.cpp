@@ -39,6 +39,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PanethCellMutationState.hpp"
 
+#include "DifferentiatedCellProliferativeType.hpp"
+
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 EpithelialLayerLinearSpringForce<ELEMENT_DIM,SPACE_DIM>::EpithelialLayerLinearSpringForce()
    : AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>(),

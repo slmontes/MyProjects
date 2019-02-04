@@ -41,26 +41,6 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ChasteSerialization.hpp"
 #include <boost/serialization/base_object.hpp>
 
-/**
- * A force law initially employed by Meineke et al (2001) in their off-lattice
- * model of the intestinal crypt (doi:10.1046/j.0960-7722.2001.00216.x).
- *
- * Each pair of neighbouring nodes are assumed to be connected by a linear
- * spring. The force of node \f$i\f$ is given
- * by
- *
- * \f[
- * \mathbf{F}_{i}(t) = \sum_{j} \mu_{i,j} ( || \mathbf{r}_{i,j} || - s_{i,j}(t) ) \hat{\mathbf{r}}_{i,j}.
- * \f]
- *
- * Here \f$\mu_{i,j}\f$ is the spring constant for the spring between nodes
- * \f$i\f$ and \f$j\f$, \f$s_{i,j}(t)\f$ is its natural length at time \f$t\f$,
- * \f$\mathbf{r}_{i,j}\f$ is their relative displacement and a hat (\f$\hat{}\f$)
- * denotes a unit vector.
- *
- * Length is scaled by natural length.
- * Time is in hours.
- */
 template<unsigned  ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
 class EpithelialLayerLinearSpringForce : public AbstractTwoBodyInteractionForce<ELEMENT_DIM, SPACE_DIM>
 {
