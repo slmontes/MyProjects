@@ -59,8 +59,11 @@
 #include <boost/lexical_cast.hpp>
 #include "CellAgesWriter.hpp"
 
-//Additions for update Chaste_2017.1
+//Additions for update Chaste_2018.1
 #include "WildTypeCellMutationState.hpp"
+
+//output_directory
+#include "OutputFileHandler.hpp"
 
 /*
  * Define the Chaste simulation as a test class. This is how all simulations
@@ -78,7 +81,7 @@ public:
 		double end_time = 5; //250.0; //Set end time
 		double sampling_timestep = 0.5/dt; //Set sampling timestep
         unsigned start_sim = 1;
-        unsigned num_sims = 1; //It was set to 100 but took to long to run*
+        unsigned num_sims = 2; //It was set to 100 but took to long to run*
 
         // THIS IS A HACK WHICH HIJACKS PETSC TO GET ARGUMENTS INTO A TEST!
 		/*CommandLineArguments* p_args = CommandLineArguments::Instance();
@@ -100,7 +103,7 @@ public:
 		 */
 
 
-        //Set the target proportion of stem and paneth cells 
+        //Set the target proportion of stem and paneth cells
 		double target_proportion = 0.3; //This corresponds to the 20% stem cell (80% Paneth cell) case
 		//double target_proportion = 0.8; //This corresponds to the 60% stem cell (40% Paneth cell) case.
 		//double target_proportion = atof(argv[1]);
@@ -108,11 +111,11 @@ public:
 		//Set the stiffness ratio for Paneth cells to stem cells. This is the
 		double stiffness_ratio = 1.0;
 		//double stiffness_ratio = atof(argv[2]); //change Pameth cell stiffness (USUALLY 4)
-		
+
 		//Set the scale lenght of Paneth cell cycle
 		double cc_scale = 1.0;
 		//double cc_scale = atof(argv[3]); // Scale length of Paneth cell cycle (USUALLY 1)
-		
+
 		//Set the relative adhesiveness of hard cells. The values used in the paper were 1.0, 1.3 and 2.0
 		double hard_cell_drag_multiplier = 1.0;
 		//double hard_cell_drag_multiplier = atof(argv[4]);
@@ -170,7 +173,7 @@ public:
 		std::string hcdm = "1.0";
 		std::string simParams = tp + "_" + sr + "_" + ccs + "_" + hcdm;
 		std::string output_directory = "CryptFissionLiteratePaper2_" + simParams;
-		std::string multiple_run_directory = "/home/sandra/Chaste/testoutput/MultipleOrganoidRunData_" + simParams;
+		std::string multiple_run_directory = "/home/sandra/Chaste_2018/testoutput/MultipleOrganoidRunData_" + simParams;
 		std::string multi_file = "MultipleOrganoidRunData_" + simParams;
 
 
@@ -483,16 +486,16 @@ public:
 
 
 			 // Rename the ages file so we can read into matlab later
-			std::string oldAgeFile = "/home/sandra/Chaste/testoutput/" + output_directory + "/results_from_time_0/cellages.dat";
-			std::string newAgeFile = "/home/sandra/Chaste/testoutput/" + multi_file + "/cellages_" + itrack + ".dat";
+			std::string oldAgeFile = "/home/sandra/Chaste_2018/testoutput/" + output_directory + "/results_from_time_0/cellages.dat";
+			std::string newAgeFile = "/home/sandra/Chaste_2018/testoutput/" + multi_file + "/cellages_" + itrack + ".dat";
 			std::rename(oldAgeFile.c_str(),newAgeFile.c_str());
 			// Rename the cell types file so we can read it into the matlab script later
-			std::string oldTypeFile = "/home/sandra/Chaste/testoutput/" + output_directory + "/results_from_time_0/results.vizcelltypes";
-			std::string newTypeFile = "/home/sandra/Chaste/testoutput/" + multi_file + "/results_" + itrack + ".vizcelltypes";
+			std::string oldTypeFile = "/home/sandra/Chaste_2018/testoutput/" + output_directory + "/results_from_time_0/results.vizcelltypes";
+			std::string newTypeFile = "/home/sandra/Chaste_2018/testoutput/" + multi_file + "/results_" + itrack + ".vizcelltypes";
 			std::rename(oldTypeFile.c_str(),newTypeFile.c_str());
 			// Rename the volumes file so we can read into matlab later
-			std::string oldVolFile = "/home/sandra/Chaste/testoutput/" + output_directory + "/results_from_time_0/EpithelialLayerdata.dat";
-			std::string newVolFile = "/home/sandra/Chaste/testoutput/" + multi_file + "/EpithelialLayerdata_" + itrack + ".dat";
+			std::string oldVolFile = "/home/sandra/Chaste_2018/testoutput/" + output_directory + "/results_from_time_0/EpithelialLayerdata.dat";
+			std::string newVolFile = "/home/sandra/Chaste_2018/testoutput/" + multi_file + "/EpithelialLayerdata_" + itrack + ".dat";
 			std::rename(oldVolFile.c_str(),newVolFile.c_str());
 
 

@@ -147,7 +147,7 @@ public:
 				//Randomly generate number
 				double random_number = RandomNumberGenerator::Instance()->ranf();
 
-				if(random_number >= 0.5) //Assign cells to be Paneth with 1 - target_proportion
+				if(random_number >= 0.4) //Assign cells to be Paneth with 1 - target_proportion
 				{
 					cell->SetMutationState(p_paneth_state);
 				}
