@@ -8,7 +8,7 @@
 /*
  * Author: Sandra M.
  * Created on: 15/03/2019
- * Last modified: 26/03/2019
+ * Last modified: 30/04/2019
  */
 
 /**
@@ -92,9 +92,9 @@ std::vector<c_vector<unsigned, 3> > EpithelialLayerBasementMembraneForce::GetNod
 	//Get cell population
 	NodeBasedCellPopulation<3>* p_tissue = static_cast<NodeBasedCellPopulation<3>*>(&rCellPopulation);
   //Get the current node using the node_index
-  unsigned p_node= p_tissue->GetNode(node_index);
+  //unsigned p_node= p_tissue->GetNode(node_index);
   //Create a vector to record the current node neighbours
-  set<unsigned> current_node_neighbours;
+  std::set<unsigned> current_node_neighbours;
 	// // Create a vector to record all the neighbouring nodes corresponding to epithelial nodes
   // c_vector<unsigned, 3> node_neighbours;
   //
@@ -116,7 +116,8 @@ std::vector<c_vector<unsigned, 3> > EpithelialLayerBasementMembraneForce::GetNod
        * of BM force in Langlands et al (2016) and Almet et al (2017), in the
        * NodeBasedCellPopulation there are no elements or mesh
        */
-       current_node_neigbours = p_node->GetNeighbouringNodeIndices();
+       // Get the set of node indices corresponding to this cell's neighbours
+       current_node_neigbours = p_tissue->GetNeighbouringNodeIndices(node_index);
 
        //Remove neighbours that are not epithelial Nodes
        current_node_neigbours.erase( std::remove_if(current_node_neigbours.begin(), current_node_neigbours.end(),
@@ -194,15 +195,16 @@ std::vector<c_vector<unsigned, 3> > EpithelialLayerBasementMembraneForce::GetNei
        ++iter)
   {
     //Get a pair of neighbours to calculate the vector between them
-    Node<3>* p_node_n1 = p_tissue->GetNode(iter*);
-    if (((iter*)+1) != current_node_neigbours.end())
+    Node<3>* p_node_n1 = rCellPopulation.GetNode(*iter);
+
+    if (((*iter)+1) != current_node_neigbours.end())
     {
-      Node<3>* p_node_n2 = p_tissue->GetNode(iter*);
+      Node<3>* p_node_n2 = rCellPopulation.GetNode(*iter);
     }
     //But if we are at the end of our vector, the last value should be compared with the first one
-    else if (((iter*)+1) == current_node_neigbours.end())
+    else if (((*iter)+1) == current_node_neigbours.end())
     {
-      Node<3>* p_node_n2 = p_tissue->GetNode(current_node_neigbours.begin());
+      Node<3>* p_node_n2 = rCellPopulation.GetNode(current_node_neigbours.begin());
     }
     // Get the location of these nodes
     c_vector<double, 3> p_node_n1_location = p_node_n1->rGetLocation();
